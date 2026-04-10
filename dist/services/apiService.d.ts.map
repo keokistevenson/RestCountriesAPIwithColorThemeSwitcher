@@ -1,1 +1,1 @@
-{"version":3,"file":"apiService.d.ts","sourceRoot":"","sources":["../../src/apiService/apiService.ts"],"names":[],"mappings":"AACA,wBAAsB,SAAS,kBAiC9B"}
+{"version":3,"file":"apiService.d.ts","sourceRoot":"","sources":["../../src/services/apiService.ts"],"names":[],"mappings":"AACA,wBAAsB,SAAS,kBAiC9B"}
