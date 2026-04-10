@@ -1,23 +1,31 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetchData = fetchData;
+exports.fetchCountries = fetchCountries;
 // Create API requests using async/await and Promises.
-async function fetchData() {
+async function fetchCountries() {
     try {
-        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,cca3,region,borders,flag");
+        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,cca3,region,capital,population,borders,flag");
         // Checking response
         console.log("status:", response.status);
         console.log("ok:", response.ok);
         // if (!response.ok) {
         //   throw new HttpError(response.status, 'Failed to fetch products');
         // }
-        const data = await response.json();
-        console.log("There are lots of countries", data.length);
-        console.log(data);
+        const countries = await response.json();
+        console.log("There are lots of countries", countries.length);
+        console.log(countries);
         // if (!data.products) {
         //   throw new DataError('Missing products data');
         // }
-        //return data.products;
+        // Do a simple conversion of data that is not in the format we want.
+        for (const country of countries) {
+            country.countryCode = country.cca3;
+            delete country.cca3;
+            country.commonName = country.name.common;
+            country.officialName = country.name.official;
+            delete country.name;
+        }
+        return countries;
     }
     catch (error) {
         // if (error instanceof TypeError) {
@@ -27,5 +35,5 @@ async function fetchData() {
         throw error;
     }
 }
-fetchData();
+fetchCountries();
 //# sourceMappingURL=apiService.js.map
