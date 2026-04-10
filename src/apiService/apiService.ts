@@ -1,7 +1,7 @@
 // Create API requests using async/await and Promises.
 export async function fetchData() {
   try {
-    const response = await fetch("https://dummyjson.com/products?limit=5");
+    const response = await fetch("https://restcountries.com/v3.1/all?fields=name,cca3,region,borders,flag");
     
     // Checking response
     console.log("status:", response.status);
@@ -12,13 +12,15 @@ export async function fetchData() {
     // }
 
     const data = await response.json();
+
+    console.log("There are lots of countries", data.length);
      console.log(data);
 
     // if (!data.products) {
     //   throw new DataError('Missing products data');
     // }
 
-    return data.products;
+    //return data.products;
 
   } catch (error) {
 
