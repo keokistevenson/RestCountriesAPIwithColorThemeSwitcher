@@ -15,8 +15,9 @@
     <main>
         <section>
             <form>
-                <input type="text" placeholder="Search for a country..." />
-                <select>
+                <label for="txtSearch">Search:</label>
+                <input id="txtSearch" type="text" placeholder="Search for a country..." />
+                <select id="ddlRegions">
                     <option value="">Filter by Region</option>
                     <option value="Africa">Africa</option>
                     <option value="Americas">Americas</option>
@@ -30,9 +31,18 @@
         <section id="countries-container"></section>
 
         <template id="country-card-template">
-            
-        </template>
 
+            <article class="country-card">
+                <img class="country-card-flag" src="" alt="" />
+                <div class="country-card-content">
+                    <h2 class="country-card-name"></h2>
+                    <p><strong>Population:</strong> <span class="country-card-population"></span></p>
+                    <p><strong>Region:</strong> <span class="country-card-region"></span></p>
+                    <p><strong>Capital:</strong> <span class="country-card-capital"></span></p>
+                </div>
+            </article>
+
+        </template>
 
     </main>
 </body>
