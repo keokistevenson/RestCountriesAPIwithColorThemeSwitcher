@@ -1,9 +1,9 @@
-import { Country } from "../types/types";
+import type { Country } from "../types/types.js";
 
 // Create API requests using async/await and Promises.
 export async function fetchCountries(): Promise<Country[]> {
   try {
-    const response = await fetch("https://restcountries.com/v3.1/all?fields=name,cca3,region,capital,population,borders,flag");
+    const response = await fetch("https://restcountries.com/v3.1/all?fields=name,cca3,region,capital,population,borders,flags");
 
     // Checking response
     console.log("status:", response.status);
@@ -45,4 +45,4 @@ export async function fetchCountries(): Promise<Country[]> {
     throw error;
   }
 }
-fetchCountries();
+// fetchCountries();

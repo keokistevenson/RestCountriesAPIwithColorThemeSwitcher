@@ -1,16 +1,15 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const apiService_1 = require("./services/apiService");
+import { fetchCountries } from "./services/apiService.js";
+console.log("index.ts loaded");
 // Form controls
 const txtSearch = document.getElementById("txtSearch");
 const ddlRegions = document.getElementById("ddlRegions");
 // Template Controls
-const countryCardsContainer = document.getElementById("countryCardsContainer");
-const countryCardTemplate = document.getElementById("countryCardTemplate");
+const countryCardsContainer = document.getElementById("countries-card-container");
+const countryCardTemplate = document.getElementById("country-card-template");
 // Use asynchronous functions to fetch product data and display it.
 async function displayCountries() {
     try {
-        const countries = await (0, apiService_1.fetchCountries)();
+        const countries = await fetchCountries();
         for (const country of countries) {
             // console.log(country);
             // Create the Clone

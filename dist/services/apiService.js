@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetchCountries = fetchCountries;
 // Create API requests using async/await and Promises.
-async function fetchCountries() {
+export async function fetchCountries() {
     try {
-        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,cca3,region,capital,population,borders,flag");
+        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,cca3,region,capital,population,borders,flags");
         // Checking response
         console.log("status:", response.status);
         console.log("ok:", response.ok);
@@ -35,5 +32,5 @@ async function fetchCountries() {
         throw error;
     }
 }
-fetchCountries();
+// fetchCountries();
 //# sourceMappingURL=apiService.js.map

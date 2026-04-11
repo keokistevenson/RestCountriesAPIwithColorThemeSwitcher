@@ -1,14 +1,14 @@
-import { fetchCountries } from "./services/apiService";
+import { fetchCountries } from "./services/apiService.js";
+
+console.log("index.ts loaded");
 
 // Form controls
-
 const txtSearch = document.getElementById("txtSearch") as HTMLInputElement;
 const ddlRegions = document.getElementById("ddlRegions") as HTMLSelectElement;
 
 // Template Controls
-const countryCardsContainer = document.getElementById("countryCardsContainer") as HTMLElement;
-const countryCardTemplate = document.getElementById("countryCardTemplate") as HTMLTemplateElement;
-
+const countryCardsContainer = document.getElementById("countries-card-container") as HTMLElement;
+const countryCardTemplate = document.getElementById("country-card-template") as HTMLTemplateElement;
 
 
 
@@ -59,4 +59,4 @@ async function displayCountries(): Promise<void> {
         console.error("Application error:", error);
     }
 }
-displayCountries();
+ displayCountries();
