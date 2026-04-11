@@ -27,6 +27,11 @@ export async function fetchCountries(): Promise<Country[]> {
       country.countryCode = country.cca3;
       delete country.cca3;
 
+      // Remove flag links from flags object and delete the flags object.
+      country.pngFlag = country.flags.png;
+      country.svgFlag = country.flags.svg;
+      delete country.flags;
+
       country.commonName = country.name.common;
       country.officialName = country.name.official;
       delete country.name;

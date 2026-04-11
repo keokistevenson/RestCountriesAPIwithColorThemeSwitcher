@@ -40,7 +40,7 @@ async function displayCountries(): Promise<void> {
             card.dataset.id = country.countryCode;
 
             // Image Attributes
-            flag.src = country.flag;
+            flag.src = country.pngFlag;
             flag.alt = `${country.commonName} flag`;
 
             countryName.textContent = country.commonName;
@@ -59,4 +59,4 @@ async function displayCountries(): Promise<void> {
         console.error("Application error:", error);
     }
 }
- displayCountries();
+displayCountries();

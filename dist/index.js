@@ -26,7 +26,7 @@ async function displayCountries() {
             const capital = cardFragment.querySelector(".country-card-capital");
             card.dataset.id = country.countryCode;
             // Image Attributes
-            flag.src = country.flag;
+            flag.src = country.pngFlag;
             flag.alt = `${country.commonName} flag`;
             countryName.textContent = country.commonName;
             population.textContent = country.population.toLocaleString();

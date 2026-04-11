@@ -6,6 +6,7 @@ export type Country = {
     population: number;
     capital: string;
     borders: string[];
-    flag: string;
+    pngFlag: string;
+    svgFlag: string;
     countryCode: string;
 };
