@@ -128,9 +128,9 @@ function filterCountries(): void {
 
         // Show card if it matches both criteria, otherwise hide it.
         if (matchesRegion && matchesSearch) {
-            htmlCard.style.display = "";  // Show card (default display). We could use display = "block" may have side effects.
+            card.style.display = "";  // Show card (default display). We could use display = "block" may have side effects.
         } else {
-           htmlCard.style.display = "none";
+           card.style.display = "none";
         }
     });
 }
