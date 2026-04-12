@@ -3,8 +3,10 @@ import { fetchCountries } from "./services/apiService.js";
 console.log("index.ts loaded");
 
 // Form controls
+const themeToggleButton = document.querySelector(".theme-toggle") as HTMLButtonElement;
 const txtSearch = document.getElementById("txtSearch") as HTMLInputElement;
 const ddlRegions = document.getElementById("ddlRegions") as HTMLSelectElement;
+
 
 // Template Controls
 const countryCardsContainer = document.getElementById("countries-card-container") as HTMLElement;
@@ -60,3 +62,14 @@ async function displayCountries(): Promise<void> {
     }
 }
 displayCountries();
+
+
+themeToggleButton.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        themeToggleButton.textContent = "☀ Light Mode";
+    } else {
+        themeToggleButton.textContent = "☾ Dark Mode";
+    }
+});

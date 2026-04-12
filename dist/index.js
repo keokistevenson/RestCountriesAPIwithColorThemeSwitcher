@@ -1,6 +1,7 @@
 import { fetchCountries } from "./services/apiService.js";
 console.log("index.ts loaded");
 // Form controls
+const themeToggleButton = document.querySelector(".theme-toggle");
 const txtSearch = document.getElementById("txtSearch");
 const ddlRegions = document.getElementById("ddlRegions");
 // Template Controls
@@ -41,4 +42,13 @@ async function displayCountries() {
     }
 }
 displayCountries();
+themeToggleButton.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    if (document.body.classList.contains("dark-mode")) {
+        themeToggleButton.textContent = "☀ Light Mode";
+    }
+    else {
+        themeToggleButton.textContent = "☾ Dark Mode";
+    }
+});
 //# sourceMappingURL=index.js.map
