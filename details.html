@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css" />
+    <title>REST Countries API Details</title>
+    <script defer type="module" src="./dist/details.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Where in the world?</h1>
+
+        <button class="theme-toggle">
+            ☾ Dark Mode
+        </button>
+    </header>
+    <main>
+
+
+        <section id="countries-card-details-container"></section>
+
+        <template id="country-card-template">
+            <article class="country-card">
+                <div class="country-card-flag-container">
+                    <img class="country-card-flag" src="" alt="" />
+                </div>
+                <div class="country-card-content">
+                    <h2 class="country-card-name"></h2>
+
+                    <section class="details-info">
+                        <div class="details-column">
+                            <ul>
+                                <li><strong>Native Name:</strong> <span class="country-card-native-name"></span></li>
+                                <li><strong>Population:</strong> <span class="country-card-population"></span></li>
+                                <li><strong>Region:</strong> <span class="country-card-region"></span></li>
+                                <li><strong>Sub Region:</strong> <span class="country-card-sub-region"></span></li>
+                                <li><strong>Capital:</strong> <span class="country-card-capital"></span></li>
+                            </ul>
+
+                        </div>
+
+                        <div class="details-column">
+                            <ul>
+                                <li><strong>Top Level Domain:</strong> <span class="country-card-tld"></span></li>
+                                <li><strong>Currencies:</strong> <span class="country-card-currencies"></span></li>
+                                <li><strong>Languages:</strong> <span class="country-card-languages"></span></li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+            </article>
+
+        </template>
+
+    </main>
+</body>
+
+</html>
