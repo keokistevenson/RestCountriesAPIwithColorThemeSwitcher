@@ -21,6 +21,8 @@ async function displayCountries(): Promise<void> {
     try {
         const countries = await fetchCountries();
 
+        const documentFragment = document.createDocumentFragment();
+
 
         for (const country of countries) {
             // console.log(country);
@@ -51,11 +53,14 @@ async function displayCountries(): Promise<void> {
             capital.textContent = country.capital || "N/A";  // One country doesn't have a capital
 
             // Copilot Suggestion? This is NOT the “batch optimization” fragment pattern
-            countryCardsContainer.appendChild(cardFragment);
+            // countryCardsContainer.appendChild(cardFragment);
 
-
-
+            // Appending clone to the document fragment (still in memory, not the DOM)
+            documentFragment.appendChild(cardFragment);
         }
+        
+        // Using Batch Optimization to append all cards to the DOM at once using the document fragment.
+        countryCardsContainer.appendChild(documentFragment);
 
     } catch (error) {
         console.error("Application error:", error);
