@@ -101,17 +101,15 @@ function filterCountries(): void {
     const selectedRegion = ddlRegions.value.toLowerCase();
     const searchText = txtSearch.value.trim().toLowerCase();
 
-    const countryCards = countryCardsContainer.querySelectorAll(".country-card");
+    const countryCards = countryCardsContainer.querySelectorAll<HTMLElement>(".country-card");
 
     console.log(`Selected Region: ${selectedRegion}, Search Text: ${searchText}`);
 
     countryCards.forEach(card => {
 
         // Simplify card attributes for filtering
-        const htmlCard = card as HTMLElement;
-
-        const cardRegion = (htmlCard.dataset.region ?? "").toLowerCase();
-        const cardName = (htmlCard.dataset.commonName ?? "").toLowerCase();
+        const cardRegion = (card.dataset.region ?? "").toLowerCase();
+        const cardName = (card.dataset.commonName ?? "").toLowerCase();
 
         // Create boolean to determine if card matches filter criteria
         const matchesRegion =

@@ -76,9 +76,8 @@ function filterCountries() {
     console.log(`Selected Region: ${selectedRegion}, Search Text: ${searchText}`);
     countryCards.forEach(card => {
         // Simplify card attributes for filtering
-        const htmlCard = card;
-        const cardRegion = (htmlCard.dataset.region ?? "").toLowerCase();
-        const cardName = (htmlCard.dataset.commonName ?? "").toLowerCase();
+        const cardRegion = (card.dataset.region ?? "").toLowerCase();
+        const cardName = (card.dataset.commonName ?? "").toLowerCase();
         // Create boolean to determine if card matches filter criteria
         const matchesRegion = selectedRegion === "" ||
             selectedRegion === "all" ||
