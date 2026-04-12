@@ -8,6 +8,24 @@
     /* outline: red solid 1px; */
 }
 
+:root {
+    --bg-page: #f0f0f0;
+    --bg-element: #ffffff;
+    --text-main: #333333;
+    --text-heading: #000000;
+    --shadow-soft: var(--shadow-soft);
+    --shadow-header: var(--shadow-header);
+}
+
+body.dark-mode {
+    --bg-page: hsl(207, 26%, 17%);
+    --bg-element: hsl(209, 23%, 22%);
+    --text-main: hsl(0, 0%, 100%);
+    --text-heading: hsl(0, 0%, 100%);
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-header: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
 /* Labels for Screen Readers (sr). Make sure they don't appear onscreen. */
 .sr-only {
     position: absolute;
@@ -23,8 +41,8 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: var(--bg-page);
+    color: var(--text-main);
 }
 
 header {
@@ -32,9 +50,9 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 1rem;
-    background-color: white;
-    color: black;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background-color: var(--bg-element);
+    color:  var(--text-heading);
+    box-shadow: var(--shadow-header);
 }
 
 header h1 {
@@ -73,9 +91,14 @@ form input {
     font-size: 1rem;
     border: none;
     border-radius: 8px;
-    background-color: white;
-    color: #333;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background-color: var(--bg-element);
+    color: var(--text-main);
+    box-shadow: var(--shadow-soft);
+}
+
+form input::placeholder {
+    color: var(--text-main);
+    opacity: 0.7;
 }
 
 form select {
@@ -84,9 +107,9 @@ form select {
     font-size: 1rem;
     border: none;
     border-radius: 8px;
-    background-color: white;
-    color: #333;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background-color: var(--bg-element);
+    color: var(--text-main);
+    box-shadow: var(--shadow-soft);
 }
 
 #countries-card-container {
@@ -98,8 +121,8 @@ form select {
 .country-card {
     border-radius: 8px;
     overflow: hidden;
-    background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background-color: var(--bg-element);
+    box-shadow: var(--shadow-soft);
     width: 100%;
 }
 
@@ -118,7 +141,7 @@ form select {
 
 .country-card-content {
     padding: 1.5rem;
-    background-color: white;
+    background-color: var(--bg-element);
 }
 
 h2 {
