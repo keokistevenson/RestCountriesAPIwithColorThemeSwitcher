@@ -63,7 +63,8 @@ ddlRegions.addEventListener("change", () => {
     console.log("Selected region:", ddlRegions.value);
     filterCountries();
 });
-txtSearch.addEventListener("change", () => {
+// Input event fires on every change to the text,NOT keydown or keyup. 
+txtSearch.addEventListener("input", () => {
     console.log("Search text:", txtSearch.value);
     filterCountries();
 });
@@ -80,7 +81,7 @@ function filterCountries() {
         const cardName = (htmlCard.dataset.commonName ?? "").toLowerCase();
         // Create boolean to determine if card matches filter criteria
         const matchesRegion = selectedRegion === "" ||
-            selectedRegion === "All" ||
+            selectedRegion === "all" ||
             cardRegion === selectedRegion;
         // if (matchesRegion) console.log(`Card Region: ${cardRegion}, Selected Region: ${selectedRegion}`);
         const matchesSearch = searchText === "" ||
