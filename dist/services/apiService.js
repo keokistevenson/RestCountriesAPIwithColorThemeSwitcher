@@ -1,7 +1,7 @@
 // Create API requests using async/await and Promises.
 export async function fetchCountries() {
     try {
-        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,cca3,region,capital,population,borders,flags");
+        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,nativeName,cca3,region,subregion,capital,population,borders,flags");
         // Checking response
         console.log("status:", response.status);
         console.log("ok:", response.ok);
@@ -37,4 +37,45 @@ export async function fetchCountries() {
     }
 }
 // fetchCountries();
+// Create API requests using async/await and Promises.
+export async function fetchCountryDetails(countryCodes) {
+    try {
+        // Currently it is not necessary to specify fields when providing country codes.
+        const url = `https://restcountries.com/v3.1/alpha?codes=${countryCodes.join(",")}`;
+        const response = await fetch(url);
+        // Checking response
+        console.log("status:", response.status);
+        console.log("ok:", response.ok);
+        // if (!response.ok) {
+        //   throw new HttpError(response.status, 'Failed to fetch products');
+        // }
+        const countryDetails = await response.json();
+        console.log("There are lots of country details", countryDetails.length);
+        console.log(countryDetails);
+        // if (!data.products) {
+        //   throw new DataError('Missing products data');
+        // }
+        // Do a simple conversion of data that is not in the format we want.
+        for (const countryDetail of countryDetails) {
+            countryDetail.countryCode = countryDetail.cca3;
+            delete countryDetail.cca3;
+            // Remove flag links from flags object and delete the flags object.
+            countryDetail.pngFlag = countryDetail.flags.png;
+            countryDetail.svgFlag = countryDetail.flags.svg;
+            delete countryDetail.flags;
+            countryDetail.commonName = countryDetail.name.common;
+            countryDetail.officialName = countryDetail.name.official;
+            delete countryDetail.name;
+        }
+        return countryDetails;
+    }
+    catch (error) {
+        // if (error instanceof TypeError) {
+        //   throw new NetworkError('Network issue occurred');
+        // }
+        console.error("Fetch error:", error);
+        throw error;
+    }
+}
+fetchCountryDetails(["USA", "CAN"]);
 //# sourceMappingURL=apiService.js.map
