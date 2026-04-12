@@ -9,7 +9,6 @@
 }
 
 /* Labels for Screen Readers (sr). Make sure they don't appear onscreen. */
-
 .sr-only {
     position: absolute;
     width: 1px;
@@ -26,83 +25,87 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f0f0f0;
     color: #333;
-
 }
 
 header {
-
     display: flex;
     justify-content: space-between;
-    /* pushes items apart */
     align-items: center;
-    /* vertically centers them */
-
-    padding: 1rem 2rem;
-
-    color: black;
-
-
+    padding: 1.25rem 1rem;
     background-color: white;
+    color: black;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+header h1 {
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 
 header button {
-
-    font-size: 1.5rem;
+    font-size: 0.95rem;
     border: 0;
     background-color: transparent;
-}
-
-form {
-
-    display: flex;
-    justify-content: space-between;
-    /* pushes items apart */
-    align-items: center;
-    /* vertically centers them */
-
-    margin-bottom: 2rem;
-}
-
-form input {
-    border-radius: 8px;
-    padding: 1rem;
-    font-size: 1.2rem;
-    border: 8px solid white;
-    width: 800px;
-}
-
-form select {
-    border-radius: 8px;
-    padding: 1rem;
-    width: 220px;
-    font-size: 1.2rem;
-    border: 8px solid white;
+    color: inherit;
+    cursor: pointer;
+    font-weight: 600;
 }
 
 main {
-    padding: 1rem;
+    padding: 1.5rem 1rem 3rem;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.search-bar {
+    width: 100%;
+}
+
+form input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+form select {
+    width: 200px;
+    padding: 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
 
 #countries-card-container {
-
     display: grid;
-    grid-template-columns: repeat(4, minmax(220px, 1fr));
-    gap: 4rem;
-
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
 }
 
 .country-card {
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     width: 100%;
 }
 
 .country-card-flag-container {
     width: 100%;
-    height: 200px;
+    height: 180px;
     overflow: hidden;
 }
 
@@ -114,20 +117,70 @@ main {
 }
 
 .country-card-content {
-    padding: 30px;
+    padding: 1.5rem;
     background-color: white;
 }
 
 h2 {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
 }
 
 p {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
 }
 
-article {
-    background-color: purple;
+@media (min-width: 700px) {
+    header {
+        padding: 1.5rem 2rem;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    main {
+        padding: 2rem;
+    }
+
+    form {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .search-bar {
+        flex: 1;
+        max-width: 420px;
+    }
+
+    #countries-card-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+}
+
+@media (min-width: 1100px) {
+    header {
+        padding: 1.5rem 3rem;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    main {
+        padding: 3rem;
+    }
+
+    .search-bar {
+        max-width: 480px;
+    }
+
+    #countries-card-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4rem;
+    }
 }
