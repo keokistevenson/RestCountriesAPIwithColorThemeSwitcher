@@ -41,7 +41,12 @@ async function displayCountries(): Promise<void> {
             const region = cardFragment.querySelector(".country-card-region") as HTMLElement;
             const capital = cardFragment.querySelector(".country-card-capital") as HTMLElement;
 
+            // Create attributes for easy identification and filtering later.
             card.dataset.id = country.countryCode;
+            card.dataset.region = country.region;
+            card.dataset.commonName = country.commonName.toLowerCase();  // For case-insensitive search filtering.
+
+            
 
             // Image Attributes
             flag.src = country.pngFlag;
@@ -78,3 +83,55 @@ themeToggleButton.addEventListener("click", () => {
         themeToggleButton.textContent = "☾ Dark Mode";
     }
 });
+
+ddlRegions.addEventListener("change", () => {
+    console.log("Selected region:", ddlRegions.value);
+    filterCountries();
+});
+
+txtSearch.addEventListener("change", () => {
+    console.log("Search text:", txtSearch.value);
+    filterCountries();
+});
+
+
+function filterCountries(): void {
+    // Capture filter criteria
+    const selectedRegion = ddlRegions.value.toLowerCase();
+    const searchText = txtSearch.value.trim().toLowerCase();
+
+    const countryCards = countryCardsContainer.querySelectorAll(".country-card");
+
+    console.log(`Selected Region: ${selectedRegion}, Search Text: ${searchText}`);
+
+    countryCards.forEach(card => {
+
+        // Simplify card attributes for filtering
+        const htmlCard = card as HTMLElement;
+
+        const cardRegion = (htmlCard.dataset.region ?? "").toLowerCase();
+        const cardName = (htmlCard.dataset.commonName ?? "").toLowerCase();
+
+        // Create boolean to determine if card matches filter criteria
+        const matchesRegion =
+            selectedRegion === "" ||
+            selectedRegion === "All" ||
+            cardRegion === selectedRegion;
+
+        // if (matchesRegion) console.log(`Card Region: ${cardRegion}, Selected Region: ${selectedRegion}`);
+
+        const matchesSearch =
+            searchText === "" ||
+            cardName.includes(searchText);
+
+        // Debugging output to verify matching logic
+       // console.log(`Matched Region: ${matchesRegion}, Matched Search Text: ${matchesSearch}`);
+
+        // Show card if it matches both criteria, otherwise hide it.
+        if (matchesRegion && matchesSearch) {
+            htmlCard.style.display = "";  // Show card (default display). We could use display = "block" may have side effects.
+        } else {
+           htmlCard.style.display = "none";
+        }
+    });
+}
