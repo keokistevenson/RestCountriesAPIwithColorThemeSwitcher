@@ -1,0 +1,133 @@
+/* Reset Styles */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* outline: red solid 1px; */
+}
+
+/* Labels for Screen Readers (sr). Make sure they don't appear onscreen. */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+
+}
+
+header {
+
+    display: flex;
+    justify-content: space-between;
+    /* pushes items apart */
+    align-items: center;
+    /* vertically centers them */
+
+    padding: 1rem 2rem;
+
+    color: black;
+
+
+    background-color: white;
+}
+
+header button {
+
+    font-size: 1.5rem;
+    border: 0;
+    background-color: transparent;
+}
+
+form {
+
+    display: flex;
+    justify-content: space-between;
+    /* pushes items apart */
+    align-items: center;
+    /* vertically centers them */
+
+    margin-bottom: 2rem;
+}
+
+form input {
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: 8px solid white;
+    width: 800px;
+}
+
+form select {
+    border-radius: 8px;
+    padding: 1rem;
+    width: 220px;
+    font-size: 1.2rem;
+    border: 8px solid white;
+}
+
+main {
+    padding: 1rem;
+}
+
+
+#countries-card-container {
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+    gap: 4rem;
+
+}
+
+.country-card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    width: 100%;
+}
+
+.country-card-flag-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.country-card-flag-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.country-card-content {
+    padding: 30px;
+    background-color: white;
+}
+
+h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+article {
+    background-color: purple;
+}
