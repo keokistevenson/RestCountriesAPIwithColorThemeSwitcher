@@ -33,13 +33,13 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.png)
+![](./Screenshot.png)
 
 
 ### Links
 
-- Solution URL: (https://github.com/keokistevenson/RestCountriesAPIwithColorThemeSwitche)
-- Live Site URL: (https://keokistevenson.github.io/RestCountriesAPIwithColorThemeSwitcher/)
+- Solution URL: [GitHub Repo](https://github.com/keokistevenson/RestCountriesAPIwithColorThemeSwitcher)
+- Live Site URL: [Live Demo](https://keokistevenson.github.io/RestCountriesAPIwithColorThemeSwitcher/)
 
 ## My process
 
