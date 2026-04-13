@@ -1,4 +1,6 @@
 import type { Country, CountryDetail } from "../types/types.js";
+import { NetworkError, HttpError, DataError } from '../utils/errorHandler';
+
 
 
 // Create API requests using async/await and Promises.
@@ -10,18 +12,18 @@ export async function fetchCountries(): Promise<Country[]> {
     console.log("status:", response.status);
     console.log("ok:", response.ok);
 
-    // if (!response.ok) {
-    //   throw new HttpError(response.status, 'Failed to fetch products');
-    // }
+    if (!response.ok) {
+      throw new HttpError(response.status, 'Failed to fetch countries');
+    }
 
     const countries = await response.json();
 
     console.log("There are lots of countries", countries.length);
     console.log(countries);
 
-    // if (!data.products) {
-    //   throw new DataError('Missing products data');
-    // }
+    if (!Array.isArray(countries) || countries.length === 0) {
+      throw new DataError("Missing country data");
+    }
 
     // Do a simple conversion of data that is not in the format we want.
     for (const country of countries) {
@@ -44,9 +46,9 @@ export async function fetchCountries(): Promise<Country[]> {
 
   } catch (error) {
 
-    // if (error instanceof TypeError) {
-    //   throw new NetworkError('Network issue occurred');
-    // }
+    if (error instanceof TypeError) {
+      throw new NetworkError("Network issue occurred while fetching country data");
+    }
 
     console.error("Fetch error:", error);
 
@@ -67,18 +69,18 @@ export async function fetchCountryDetails(countryCode: string): Promise<CountryD
     console.log("status:", response.status);
     console.log("ok:", response.ok);
 
-    // if (!response.ok) {
-    //   throw new HttpError(response.status, 'Failed to fetch products');
-    // }
+    if (!response.ok) {
+      throw new HttpError(response.status, 'Failed to fetch country details');
+    }
 
     const countryDetails = await response.json();
 
     console.log("There are lots of country details", countryDetails.length);
     console.log(countryDetails);
 
-    // if (!data.products) {
-    //   throw new DataError('Missing products data');
-    // }
+    if (!Array.isArray(countryDetails) || countryDetails.length === 0) {
+      throw new DataError("Missing country detail data");
+    }
 
     // Do a simple conversion of data that is not in the format we want.
     for (const countryDetail of countryDetails) {
@@ -113,9 +115,9 @@ export async function fetchCountryDetails(countryCode: string): Promise<CountryD
 
   } catch (error) {
 
-    // if (error instanceof TypeError) {
-    //   throw new NetworkError('Network issue occurred');
-    // }
+    if (error instanceof TypeError) {
+      throw new NetworkError("Network issue occurred while fetching country details");
+    }
 
     console.error("Fetch error:", error);
 
