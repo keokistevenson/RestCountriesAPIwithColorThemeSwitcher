@@ -1,7 +1,7 @@
 // Create API requests using async/await and Promises.
 export async function fetchCountries() {
     try {
-        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,nativeName,cca3,region,subregion,capital,population,borders,flags");
+        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,cca3,region,capital,population,flags");
         // Checking response
         console.log("status:", response.status);
         console.log("ok:", response.ok);
@@ -22,6 +22,7 @@ export async function fetchCountries() {
             country.pngFlag = country.flags.png;
             country.svgFlag = country.flags.svg;
             delete country.flags;
+            country.capital = country.capital?.join(", ") ?? "None";
             country.commonName = country.name.common;
             country.officialName = country.name.official;
             delete country.name;
@@ -38,10 +39,10 @@ export async function fetchCountries() {
 }
 // fetchCountries();
 // Create API requests using async/await and Promises.
-export async function fetchCountryDetails(countryCodes) {
+export async function fetchCountryDetails(countryCode) {
     try {
         // Currently it is not necessary to specify fields when providing country codes.
-        const url = `https://restcountries.com/v3.1/alpha?codes=${countryCodes.join(",")}`;
+        const url = `https://restcountries.com/v3.1/alpha?codes=${countryCode}`;
         const response = await fetch(url);
         // Checking response
         console.log("status:", response.status);
@@ -65,8 +66,18 @@ export async function fetchCountryDetails(countryCodes) {
             delete countryDetail.flags;
             countryDetail.commonName = countryDetail.name.common;
             countryDetail.officialName = countryDetail.name.official;
+            countryDetail.nativeName = countryDetail.name.common;
             delete countryDetail.name;
+            countryDetail.capital = countryDetail.capital?.join(", ") ?? "None";
+            countryDetail.subregion = countryDetail.subregion ?? "N/A";
+            const languages = countryDetail.languages;
+            countryDetail.languages = languages ? Object.values(languages) : [];
+            const currencies = countryDetail.currencies;
+            countryDetail.currencies = currencies
+                ? Object.values(currencies).map(currency => currency.name)
+                : [];
         }
+        console.log("exiting fetchCountryDetailsAPI Call");
         return countryDetails;
     }
     catch (error) {
@@ -77,5 +88,5 @@ export async function fetchCountryDetails(countryCodes) {
         throw error;
     }
 }
-fetchCountryDetails(["USA", "CAN"]);
+//fetchCountryDetails("CAN");
 //# sourceMappingURL=apiService.js.map

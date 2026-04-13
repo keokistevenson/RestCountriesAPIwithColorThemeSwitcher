@@ -36,7 +36,7 @@ async function displayCountries() {
             countryName.textContent = country.commonName;
             population.textContent = country.population.toLocaleString();
             region.textContent = country.region;
-            capital.textContent = country.capital || "N/A"; // One country doesn't have a capital
+            capital.textContent = country.capital || "None"; // One country doesn't have a capital
             // Copilot Suggestion? This is NOT the “batch optimization” fragment pattern
             // countryCardsContainer.appendChild(cardFragment);
             // Appending clone to the document fragment (still in memory, not the DOM)

@@ -11,6 +11,7 @@ export type Country = {
 export type CountryDetail = {
     commonName: string;
     officialName: string;
+    nativeName: string;
     pngFlag: string;
     svgFlag: string;
     population: number;

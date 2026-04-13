@@ -1,10 +1,10 @@
-import type { Country } from "../types/types.js";
-import type { CountryDetail } from "../types/types.js";
+import type { Country, CountryDetail } from "../types/types.js";
+
 
 // Create API requests using async/await and Promises.
 export async function fetchCountries(): Promise<Country[]> {
   try {
-    const response = await fetch("https://restcountries.com/v3.1/all?fields=name,nativeName,cca3,region,subregion,capital,population,borders,flags");
+    const response = await fetch("https://restcountries.com/v3.1/all?fields=name,cca3,region,capital,population,flags");
 
     // Checking response
     console.log("status:", response.status);
@@ -33,6 +33,8 @@ export async function fetchCountries(): Promise<Country[]> {
       country.svgFlag = country.flags.svg;
       delete country.flags;
 
+      country.capital = country.capital?.join(", ") ?? "None";
+
       country.commonName = country.name.common;
       country.officialName = country.name.official;
       delete country.name;
@@ -54,11 +56,11 @@ export async function fetchCountries(): Promise<Country[]> {
 // fetchCountries();
 
 // Create API requests using async/await and Promises.
-export async function fetchCountryDetails(countryCodes: string[]): Promise<CountryDetail[]> {
+export async function fetchCountryDetails(countryCode: string): Promise<CountryDetail[]> {
   try {
 
     // Currently it is not necessary to specify fields when providing country codes.
-    const url: string = `https://restcountries.com/v3.1/alpha?codes=${countryCodes.join(",")}`;
+    const url: string = `https://restcountries.com/v3.1/alpha?codes=${countryCode}`;
     const response = await fetch(url);
 
     // Checking response
@@ -90,8 +92,22 @@ export async function fetchCountryDetails(countryCodes: string[]): Promise<Count
 
       countryDetail.commonName = countryDetail.name.common;
       countryDetail.officialName = countryDetail.name.official;
+      countryDetail.nativeName = countryDetail.name.common;
       delete countryDetail.name;
+
+      countryDetail.capital = countryDetail.capital?.join(", ") ?? "None";
+      countryDetail.subregion = countryDetail.subregion ?? "N/A";
+
+      const languages = countryDetail.languages;
+      countryDetail.languages = languages ? Object.values(languages) : [];
+
+      const currencies = countryDetail.currencies as Record<string, { name: string; symbol: string }> | undefined;
+      countryDetail.currencies = currencies
+        ? Object.values(currencies).map(currency => currency.name)
+        : [];
     }
+
+    console.log("exiting fetchCountryDetailsAPI Call");
 
     return countryDetails;
 
@@ -106,4 +122,4 @@ export async function fetchCountryDetails(countryCodes: string[]): Promise<Count
     throw error;
   }
 }
-//fetchCountryDetails(["USA", "CAN"]);
+//fetchCountryDetails("CAN");
