@@ -7,10 +7,24 @@ const ddlRegions = document.getElementById("ddlRegions");
 // Template Controls
 const countryCardsContainer = document.getElementById("countries-card-container");
 const countryCardTemplate = document.getElementById("country-card-template");
+const savedTheme = sessionStorage.getItem("theme");
+if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggleButton.textContent = "☀ Light Mode";
+}
+else {
+    themeToggleButton.textContent = "☾ Dark Mode";
+}
 // Use asynchronous functions to fetch product data and display it.
 async function displayCountries() {
     try {
         const countries = await fetchCountries();
+        // Create a map, store it in session for the details page.
+        const countryMap = {};
+        countries.forEach(country => {
+            countryMap[country.countryCode] = country.commonName;
+        });
+        sessionStorage.setItem("countryMap", JSON.stringify(countryMap));
         const documentFragment = document.createDocumentFragment();
         for (const country of countries) {
             // console.log(country);
@@ -56,9 +70,11 @@ themeToggleButton.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
     if (document.body.classList.contains("dark-mode")) {
         themeToggleButton.textContent = "☀ Light Mode";
+        sessionStorage.setItem("theme", "dark");
     }
     else {
         themeToggleButton.textContent = "☾ Dark Mode";
+        sessionStorage.setItem("theme", "light");
     }
 });
 ddlRegions.addEventListener("change", () => {

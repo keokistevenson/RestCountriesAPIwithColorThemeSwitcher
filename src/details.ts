@@ -1,7 +1,13 @@
 import { fetchCountryDetails } from "./services/apiService.js";
-import { CountryDetail } from "./types/types.js";
+
 
 console.log("details.ts loaded");
+
+const storedCountryMap = sessionStorage.getItem("countryMap");
+
+const countryMap: Record<string, string> = storedCountryMap
+    ? JSON.parse(storedCountryMap)
+    : {};
 
 // Form controls
 const themeToggleButton = document.querySelector(".theme-toggle") as HTMLButtonElement;
@@ -12,14 +18,24 @@ const countryCardTemplate = document.getElementById("country-card-template") as 
 
 const backButton = document.querySelector(".back-button") as HTMLButtonElement;
 
-const params = new URLSearchParams(window.location.search);
-const countryCode = params.get("code");
+backButton.addEventListener("click", () => {
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = "index.html";
+    }
+});
 
-if (!countryCode) {
-    console.error("Missing country code");
+
+const savedTheme = sessionStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggleButton.textContent = "☀ Light Mode";
 } else {
-    displayCountryDetails(countryCode);
+    themeToggleButton.textContent = "☾ Dark Mode";
 }
+
 
 // Use asynchronous functions to fetch product data and display it.
 async function displayCountryDetails(countryCode: string): Promise<void> {
@@ -85,6 +101,27 @@ async function displayCountryDetails(countryCode: string): Promise<void> {
                 ? countryDetail.languages.join(", ")
                 : "N/A";
 
+            const borderList = cardFragment.querySelector(".border-country-list") as HTMLElement;
+            const borderTemplate = borderList.querySelector(".border-country") as HTMLButtonElement;
+
+            borderList.innerHTML = "";
+
+            if (!countryDetail.borders || countryDetail.borders.length === 0) {
+                borderList.textContent = "None";
+            } else {
+                countryDetail.borders.forEach(code => {
+                    const border = borderTemplate.cloneNode(true) as HTMLButtonElement;
+
+                    border.textContent = countryMap[code] ?? code;
+
+                    border.addEventListener("click", () => {
+                        window.location.href = `details.html?code=${code}`;
+                    });
+
+                    borderList.appendChild(border);
+                });
+            }
+
             // Copilot Suggestion? This is NOT the “batch optimization” fragment pattern
             // countryCardsContainer.appendChild(cardFragment);
 
@@ -99,7 +136,16 @@ async function displayCountryDetails(countryCode: string): Promise<void> {
         console.error("Application error:", error);
     }
 }
-// displayCountryDetails("RUS");
+
+
+const params = new URLSearchParams(window.location.search);
+const countryCode = params.get("code");
+
+if (!countryCode) {
+    console.error("Missing country code in URL");
+} else {
+    displayCountryDetails(countryCode);
+}
 
 
 themeToggleButton.addEventListener("click", () => {
@@ -107,63 +153,10 @@ themeToggleButton.addEventListener("click", () => {
 
     if (document.body.classList.contains("dark-mode")) {
         themeToggleButton.textContent = "☀ Light Mode";
+        sessionStorage.setItem("theme", "dark");
     } else {
         themeToggleButton.textContent = "☾ Dark Mode";
+        sessionStorage.setItem("theme", "light");
     }
 });
 
-
-backButton.addEventListener("click", () => {
-    window.history.back();
-});
-
-// ddlRegions.addEventListener("change", () => {
-//     console.log("Selected region:", ddlRegions.value);
-//     filterCountries();
-// });
-
-// // Input event fires on every change to the text,NOT keydown or keyup.
-// txtSearch.addEventListener("input", () => {
-//     console.log("Search text:", txtSearch.value);
-//     filterCountries();
-// });
-
-
-// function filterCountries(): void {
-//     // Capture filter criteria
-//     const selectedRegion = ddlRegions.value.toLowerCase();
-//     const searchText = txtSearch.value.trim().toLowerCase();
-
-//     const countryCards = countryCardsContainer.querySelectorAll<HTMLElement>(".country-card");
-
-//     console.log(`Selected Region: ${selectedRegion}, Search Text: ${searchText}`);
-
-//     countryCards.forEach(card => {
-
-//         // Simplify card attributes for filtering
-//         const cardRegion = (card.dataset.region ?? "").toLowerCase();
-//         const cardName = (card.dataset.commonName ?? "").toLowerCase();
-
-//         // Create boolean to determine if card matches filter criteria
-//         const matchesRegion =
-//             selectedRegion === "" ||
-//             selectedRegion === "all" ||
-//             cardRegion === selectedRegion;
-
-//         // if (matchesRegion) console.log(`Card Region: ${cardRegion}, Selected Region: ${selectedRegion}`);
-
-//         const matchesSearch =
-//             searchText === "" ||
-//             cardName.includes(searchText);
-
-//         // Debugging output to verify matching logic
-//        // console.log(`Matched Region: ${matchesRegion}, Matched Search Text: ${matchesSearch}`);
-
-//         // Show card if it matches both criteria, otherwise hide it.
-//         if (matchesRegion && matchesSearch) {
-//             card.style.display = "";  // Show card (default display). We could use display = "block" may have side effects.
-//         } else {
-//            card.style.display = "none";
-//         }
-//     });
-// }

@@ -12,14 +12,29 @@ const ddlRegions = document.getElementById("ddlRegions") as HTMLSelectElement;
 const countryCardsContainer = document.getElementById("countries-card-container") as HTMLElement;
 const countryCardTemplate = document.getElementById("country-card-template") as HTMLTemplateElement;
 
+const savedTheme = sessionStorage.getItem("theme");
 
-
+if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggleButton.textContent = "☀ Light Mode";
+} else {
+    themeToggleButton.textContent = "☾ Dark Mode";
+}
 
 
 // Use asynchronous functions to fetch product data and display it.
 async function displayCountries(): Promise<void> {
     try {
         const countries = await fetchCountries();
+
+        // Create a map, store it in session for the details page.
+        const countryMap: Record<string, string> = {};
+
+        countries.forEach(country => {
+            countryMap[country.countryCode] = country.commonName;
+        });
+
+        sessionStorage.setItem("countryMap", JSON.stringify(countryMap));
 
         const documentFragment = document.createDocumentFragment();
 
@@ -64,7 +79,7 @@ async function displayCountries(): Promise<void> {
             // Appending clone to the document fragment (still in memory, not the DOM)
             documentFragment.appendChild(cardFragment);
         }
-        
+
         // Using Batch Optimization to append all cards to the DOM at once using the document fragment.
         countryCardsContainer.appendChild(documentFragment);
 
@@ -80,8 +95,10 @@ themeToggleButton.addEventListener("click", () => {
 
     if (document.body.classList.contains("dark-mode")) {
         themeToggleButton.textContent = "☀ Light Mode";
+        sessionStorage.setItem("theme", "dark");
     } else {
         themeToggleButton.textContent = "☾ Dark Mode";
+        sessionStorage.setItem("theme", "light");
     }
 });
 
@@ -124,13 +141,13 @@ function filterCountries(): void {
             cardName.includes(searchText);
 
         // Debugging output to verify matching logic
-       // console.log(`Matched Region: ${matchesRegion}, Matched Search Text: ${matchesSearch}`);
+        // console.log(`Matched Region: ${matchesRegion}, Matched Search Text: ${matchesSearch}`);
 
         // Show card if it matches both criteria, otherwise hide it.
         if (matchesRegion && matchesSearch) {
             card.style.display = "";  // Show card (default display). We could use display = "block" may have side effects.
         } else {
-           card.style.display = "none";
+            card.style.display = "none";
         }
     });
 }

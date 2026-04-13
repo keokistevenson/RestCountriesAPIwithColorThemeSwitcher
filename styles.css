@@ -282,6 +282,7 @@ p {
     box-shadow: var(--shadow-soft);
     font-size: 0.85rem;
     text-align: center;
+    cursor: pointer;
 }
 
 
