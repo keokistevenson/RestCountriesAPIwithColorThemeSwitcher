@@ -132,4 +132,4 @@ I’m a Full-Stack software developer with a strong foundation in C# and the .NE
 ## Reflections
 
 Write a 200-300 word reflection discussing your development process, challenges faced, solutions implemented, and potential improvements.
-I hate working on teh CSS and mining the data for native name and currency was horrendous.
+I hate working on the CSS and mining the data for native name and currency was horrendous.  I loved all the practical: I used TypeScrpt. I was able to keep my code modular. (There are some methods that could be broken into smaller methods but I mean the file structure.) I was about to see some distinctions with declaring a control a document fragment and actually using one. It was code using a type instead of a class. I added ARIA as usual and hid one of my labels. I was able to use session and custom error classes.I also used CSS variables for the theme. That was cool.  I"m disappointed i didn't get to use event delegation or the old way of handling promises. It would have been cool to have a little of everything in one project.
