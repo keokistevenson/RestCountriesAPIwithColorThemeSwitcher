@@ -52,9 +52,11 @@ Users should be able to:
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I really wanted to spend more time on this read me but its rushed. My goal was to try to get as many features we learned over the last few weeks into one project as possible. I didn't have time to  get the old method of doing asynchronous programming or event delegations.
 
-To see how you can add code snippets, see below:
+I learned a lot--a ton! These projects really help connect the dots even when they are completely annoying.
+
+See my code snippets below:
 
 ```html
 <label class="sr-only" for="txtSearch">Search:</label>
