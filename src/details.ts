@@ -12,6 +12,15 @@ const countryCardTemplate = document.getElementById("country-card-template") as 
 
 const backButton = document.querySelector(".back-button") as HTMLButtonElement;
 
+const params = new URLSearchParams(window.location.search);
+const countryCode = params.get("code");
+
+if (!countryCode) {
+    console.error("Missing country code");
+} else {
+    displayCountryDetails(countryCode);
+}
+
 // Use asynchronous functions to fetch product data and display it.
 async function displayCountryDetails(countryCode: string): Promise<void> {
     try {
@@ -90,7 +99,7 @@ async function displayCountryDetails(countryCode: string): Promise<void> {
         console.error("Application error:", error);
     }
 }
-displayCountryDetails("CAN");
+// displayCountryDetails("RUS");
 
 
 themeToggleButton.addEventListener("click", () => {

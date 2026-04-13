@@ -46,7 +46,8 @@ async function displayCountries(): Promise<void> {
             cardLink.dataset.region = country.region;
             cardLink.dataset.commonName = country.commonName.toLowerCase();  // For case-insensitive search filtering.
 
-            
+            // Card Details Page Navigation
+            cardLink.href = `details.html?code=` + country.countryCode;
 
             // Image Attributes
             flag.src = country.pngFlag;
@@ -114,7 +115,6 @@ function filterCountries(): void {
         // Create boolean to determine if card matches filter criteria
         const matchesRegion =
             selectedRegion === "" ||
-            selectedRegion === "all" ||
             cardRegion === selectedRegion;
 
         // if (matchesRegion) console.log(`Card Region: ${cardRegion}, Selected Region: ${selectedRegion}`);
