@@ -1,6 +1,6 @@
 # Frontend Mentor - REST Countries API with color theme switcher solution
 
-This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). 
 
 ## Table of contents
 
@@ -14,9 +14,9 @@ This is a solution to the [REST Countries API with color theme switcher challeng
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
+- [Reflections](#Reflections)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
+
 
 ## Overview
 
@@ -33,20 +33,13 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./screenshot.png)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Add solution URL here](https://github.com/keokistevenson/RestCountriesAPIwithColorThemeSwitche)
+- Live Site URL: [Add live site URL here](https://keokistevenson.github.io/RestCountriesAPIwithColorThemeSwitcher/)
 
 ## My process
 
@@ -56,12 +49,6 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - CSS custom properties
 - Flexbox
 - CSS Grid
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
@@ -70,50 +57,79 @@ Use this section to recap over some of your major learnings while working throug
 To see how you can add code snippets, see below:
 
 ```html
-<h1>Some HTML code I'm proud of</h1>
+<label class="sr-only" for="txtSearch">Search:</label>
 ```
+
 ```css
-.proud-of-this-css {
-  color: papayawhip;
+:root {
+    --bg-page: #f0f0f0;
+    --bg-element: #ffffff;
+    --text-main: #333333;
+    --text-heading: #000000;
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-header: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
+
+```
+
+```TypeScript
+export type Country = {
+
+    commonName: string;
+    officialName: string;
+    region: string;
+    population: number;
+    capital: string;
+    pngFlag: string;
+    svgFlag: string;
+    countryCode: string;
+};
+
+export type CountryDetail = {
+    commonName: string;
+    officialName: string;
+    nativeName: string;
+    pngFlag: string;
+    svgFlag: string;
+    population: number;
+    region: string;
+    subregion: string;
+    capital: string;
+    tld: string[];
+    currencies: string[];
+    languages: string[];
+    borders: string[];
+    countryCode: string;
+};
 ```
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+// Copilot Suggestion? This is NOT the “batch optimization” fragment pattern
+// countryCardsContainer.appendChild(cardFragment);
+
+// Appending clone to the document fragment (still in memory, not the DOM)
+documentFragment.appendChild(cardFragment);
+ countryCardsContainer.appendChild(documentFragment);
 ```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+I want to continue focusing on using a variety of techniques and skills in learned such as event delegation, document fragments, CSS variables, error classes, modular TypeScript to name a few. I would also like to understand why some Node or TypeScript commands work and others don't.
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Example resource 1](https://www.youtube.com/watch?v=5wLrz_zUwoU) - This video helped me learn and apply CSS variables.
+- [Example resource 2](https://www.youtube.com/watch?v=XF1_MlZ5l6M) - This video discusses event capturing and bubbling which I didn't need.
+- [Example resource 2](https://emojicombos.com/search) - This website gave me easily to use character icons that I could quickly include on my buttons.
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [Add your name here](https://www.linkedin.com/in/keokistevenson/)
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
+I’m a Full-Stack software developer with a strong foundation in C# and the .NET ecosystem, specializing in building scalable web applications and RESTful APIs using ASP.NET Core and Entity Framework. I enjoy working on systems end-to-end—from designing normalized databases to optimizing application performance and maintainability.
 
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
-
-## Reflection Document:
+## Reflections
 
 Write a 200-300 word reflection discussing your development process, challenges faced, solutions implemented, and potential improvements.
+I hate working on teh CSS and mining the data for native name and currency was horrendous.
