@@ -121,11 +121,11 @@ I want to continue focusing on using a variety of techniques and skills in learn
 - [Example resource 1](https://www.youtube.com/watch?v=5wLrz_zUwoU) - This video helped me learn and apply CSS variables.
 - [Example resource 2](https://www.youtube.com/watch?v=XF1_MlZ5l6M) - This video discusses event capturing and bubbling which I didn't need.
 - [Example resource 3](https://emojicombos.com/search) - This website gave me easily to use character icons that I could quickly include on my buttons.
-- [Example resource 4]https://www.youtube.com/watch?v=JYfiaSKeYhE) - This video is about the CSS gride control.
+- [Example resource 4](https://www.youtube.com/watch?v=JYfiaSKeYhE) - This video is about the CSS gride control.
 
 ## Author
 
-- Website - [Add your name here](https://www.linkedin.com/in/keokistevenson/)
+- Website - [Keoki M. Stevenson](https://www.linkedin.com/in/keokistevenson/)
 
 I’m a Full-Stack software developer with a strong foundation in C# and the .NET ecosystem, specializing in building scalable web applications and RESTful APIs using ASP.NET Core and Entity Framework. I enjoy working on systems end-to-end—from designing normalized databases to optimizing application performance and maintainability.
 
