@@ -120,8 +120,8 @@ I want to continue focusing on using a variety of techniques and skills in learn
 
 - [Example resource 1](https://www.youtube.com/watch?v=5wLrz_zUwoU) - This video helped me learn and apply CSS variables.
 - [Example resource 2](https://www.youtube.com/watch?v=XF1_MlZ5l6M) - This video discusses event capturing and bubbling which I didn't need.
-- [Example resource 2](https://emojicombos.com/search) - This website gave me easily to use character icons that I could quickly include on my buttons.
-
+- [Example resource 3](https://emojicombos.com/search) - This website gave me easily to use character icons that I could quickly include on my buttons.
+- [Example resource 4]https://www.youtube.com/watch?v=JYfiaSKeYhE) - This video is about the CSS gride control.
 
 ## Author
 
