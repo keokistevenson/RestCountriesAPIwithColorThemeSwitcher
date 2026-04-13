@@ -10,9 +10,7 @@ const themeToggleButton = document.querySelector(".theme-toggle") as HTMLButtonE
 const countryCardsContainer = document.getElementById("countries-card-details-container") as HTMLElement;
 const countryCardTemplate = document.getElementById("country-card-template") as HTMLTemplateElement;
 
-
-
-
+const backButton = document.querySelector(".back-button") as HTMLButtonElement;
 
 // Use asynchronous functions to fetch product data and display it.
 async function displayCountryDetails(countryCode: string): Promise<void> {
@@ -55,7 +53,6 @@ async function displayCountryDetails(countryCode: string): Promise<void> {
             card.dataset.commonName = countryDetail.commonName.toLowerCase();  // For case-insensitive search filtering.
 
 
-
             // Image Attributes
             flag.src = countryDetail.pngFlag;
             flag.alt = `${countryDetail.commonName} flag`;
@@ -69,21 +66,15 @@ async function displayCountryDetails(countryCode: string): Promise<void> {
 
             subRegion.textContent = countryDetail.subregion ?? "N/A";
 
-
             tld.textContent = countryDetail.tld?.join(", ") ?? "N/A";
-
-
 
             currencies.textContent = countryDetail.currencies.length > 0
                 ? countryDetail.currencies.join(", ")
                 : "N/A";
 
-
-
             languages.textContent = countryDetail.languages.length > 0
                 ? countryDetail.languages.join(", ")
                 : "N/A";
-
 
             // Copilot Suggestion? This is NOT the “batch optimization” fragment pattern
             // countryCardsContainer.appendChild(cardFragment);
@@ -110,6 +101,11 @@ themeToggleButton.addEventListener("click", () => {
     } else {
         themeToggleButton.textContent = "☾ Dark Mode";
     }
+});
+
+
+backButton.addEventListener("click", () => {
+    window.history.back();
 });
 
 // ddlRegions.addEventListener("change", () => {

@@ -5,6 +5,7 @@ const themeToggleButton = document.querySelector(".theme-toggle");
 // Template Controls
 const countryCardsContainer = document.getElementById("countries-card-details-container");
 const countryCardTemplate = document.getElementById("country-card-template");
+const backButton = document.querySelector(".back-button");
 // Use asynchronous functions to fetch product data and display it.
 async function displayCountryDetails(countryCode) {
     try {
@@ -74,6 +75,9 @@ themeToggleButton.addEventListener("click", () => {
     else {
         themeToggleButton.textContent = "☾ Dark Mode";
     }
+});
+backButton.addEventListener("click", () => {
+    window.history.back();
 });
 // ddlRegions.addEventListener("change", () => {
 //     console.log("Selected region:", ddlRegions.value);

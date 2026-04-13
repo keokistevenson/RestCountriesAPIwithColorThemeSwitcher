@@ -20,16 +20,16 @@ async function displayCountries() {
             // I was planning to use document fragment anyway, but I found out its required in TS if i use a template.
             const cardFragment = countryCardTemplate.content.cloneNode(true);
             // Get references to the cloned elements we want to add.
-            const card = cardFragment.querySelector(".country-card"); // Article Element
+            const cardLink = cardFragment.querySelector(".country-card-link");
             const flag = cardFragment.querySelector(".country-card-flag");
             const countryName = cardFragment.querySelector(".country-card-name");
             const population = cardFragment.querySelector(".country-card-population");
             const region = cardFragment.querySelector(".country-card-region");
             const capital = cardFragment.querySelector(".country-card-capital");
             // Create attributes for easy identification and filtering later.
-            card.dataset.id = country.countryCode;
-            card.dataset.region = country.region;
-            card.dataset.commonName = country.commonName.toLowerCase(); // For case-insensitive search filtering.
+            cardLink.dataset.id = country.countryCode;
+            cardLink.dataset.region = country.region;
+            cardLink.dataset.commonName = country.commonName.toLowerCase(); // For case-insensitive search filtering.
             // Image Attributes
             flag.src = country.pngFlag;
             flag.alt = `${country.commonName} flag`;
@@ -72,7 +72,7 @@ function filterCountries() {
     // Capture filter criteria
     const selectedRegion = ddlRegions.value.toLowerCase();
     const searchText = txtSearch.value.trim().toLowerCase();
-    const countryCards = countryCardsContainer.querySelectorAll(".country-card");
+    const countryCards = countryCardsContainer.querySelectorAll(".country-card-link");
     console.log(`Selected Region: ${selectedRegion}, Search Text: ${searchText}`);
     countryCards.forEach(card => {
         // Simplify card attributes for filtering

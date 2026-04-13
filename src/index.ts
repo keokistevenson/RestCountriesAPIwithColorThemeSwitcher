@@ -34,7 +34,7 @@ async function displayCountries(): Promise<void> {
             const cardFragment = countryCardTemplate.content.cloneNode(true) as DocumentFragment;
 
             // Get references to the cloned elements we want to add.
-            const card = cardFragment.querySelector(".country-card") as HTMLElement;  // Article Element
+            const cardLink = cardFragment.querySelector(".country-card-link") as HTMLAnchorElement;
             const flag = cardFragment.querySelector(".country-card-flag") as HTMLImageElement;
             const countryName = cardFragment.querySelector(".country-card-name") as HTMLElement;
             const population = cardFragment.querySelector(".country-card-population") as HTMLElement;
@@ -42,9 +42,9 @@ async function displayCountries(): Promise<void> {
             const capital = cardFragment.querySelector(".country-card-capital") as HTMLElement;
 
             // Create attributes for easy identification and filtering later.
-            card.dataset.id = country.countryCode;
-            card.dataset.region = country.region;
-            card.dataset.commonName = country.commonName.toLowerCase();  // For case-insensitive search filtering.
+            cardLink.dataset.id = country.countryCode;
+            cardLink.dataset.region = country.region;
+            cardLink.dataset.commonName = country.commonName.toLowerCase();  // For case-insensitive search filtering.
 
             
 
@@ -101,7 +101,7 @@ function filterCountries(): void {
     const selectedRegion = ddlRegions.value.toLowerCase();
     const searchText = txtSearch.value.trim().toLowerCase();
 
-    const countryCards = countryCardsContainer.querySelectorAll<HTMLElement>(".country-card");
+    const countryCards = countryCardsContainer.querySelectorAll<HTMLElement>(".country-card-link");
 
     console.log(`Selected Region: ${selectedRegion}, Search Text: ${searchText}`);
 
